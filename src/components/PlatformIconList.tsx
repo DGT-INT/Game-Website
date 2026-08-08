@@ -1,9 +1,6 @@
-import React from "react";
 import { Game } from "../hooks/useGames";
-import { HStack, Icon, Text } from "@chakra-ui/react";
+import { HStack, Icon } from "@chakra-ui/react";
 import { FaWindows } from "react-icons/fa";
-import { MdPhoneIphone } from "react-icons/md";
-import { siNintendo } from "react-icons/si";
 import { BsGlobe } from "react-icons/bs";
 import { IconType } from "react-icons";
 
