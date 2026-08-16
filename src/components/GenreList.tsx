@@ -3,9 +3,10 @@ import useGenres, { Genre } from "../hooks/useGenre";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
+  selectedGenre: Genre | null;
 }
 
-const GenreList = ({ onSelectGenre }: Props) => {
+const GenreList = ({ selectedGenre, onSelectGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -15,7 +16,13 @@ const GenreList = ({ onSelectGenre }: Props) => {
     <List>
       {data.map((genre, index) => (
         <ListItem key={`${genre.genre}-${index}`} paddingY="5px">
-          <Button onClick={() => onSelectGenre(genre)} variant="link">
+          <Button
+            fontWeight={
+              genre.genre === selectedGenre?.genre ? "bold" : "normal"
+            }
+            onClick={() => onSelectGenre(genre)}
+            variant="link"
+          >
             {genre.genre}
           </Button>
         </ListItem>
