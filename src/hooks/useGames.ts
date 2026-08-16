@@ -1,5 +1,6 @@
 import useData from "./useData";
 import { Genre } from "./useGenre";
+import { Platform } from "./usePlatforms";
 
 export interface Game {
   id: number;
@@ -18,15 +19,26 @@ const genreMap: Record<string, string> = {
   Sports: "sports",
 };
 
-const useGames = (selectedGenre: Genre | null) =>
+const platformMap: Record<string, string> = {
+  "PC (Windows)": "pc",
+  "Web Browser": "browser",
+};
+
+const useGames = (
+  selectedGenre: Genre | null,
+  selectedPlatform: Platform | null,
+) =>
   useData<Game>(
     "/games",
     {
       params: {
         category: selectedGenre ? genreMap[selectedGenre.genre] : undefined,
+        platform: selectedPlatform
+          ? platformMap[selectedPlatform.platform]
+          : undefined,
       },
     },
-    [selectedGenre?.genre],
+    [selectedGenre?.genre, selectedPlatform?.platform],
   );
 
 export default useGames;
