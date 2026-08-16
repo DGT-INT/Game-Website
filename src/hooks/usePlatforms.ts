@@ -4,6 +4,14 @@ interface Platform {
   platform: string;
 }
 
-const usePlatforms = () => useData<Platform>("/games");
+const usePlatforms = () => {
+  const { data, error } = useData<Platform>("/games");
+
+  const uniquePlatforms = [...new Set(data.map((item) => item.platform))].map(
+    (platform) => ({ platform }),
+  );
+
+  return { data: uniquePlatforms, error };
+};
 
 export default usePlatforms;
