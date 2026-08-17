@@ -34,6 +34,7 @@ const useGames = (gameQuery: GameQuery) =>
         platform: gameQuery.platform
           ? platformMap[gameQuery.platform.platform]
           : undefined,
+        "sort-by": gameQuery.sortOrder,
       },
     },
     [gameQuery],
