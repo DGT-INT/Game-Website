@@ -1,6 +1,6 @@
 import useData from "./useData";
 
-interface Platform {
+export interface Platform {
   platform: string;
 }
 

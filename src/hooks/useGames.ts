@@ -1,3 +1,4 @@
+import { GameQuery } from "../App";
 import useData from "./useData";
 import { Genre } from "./useGenre";
 import { Platform } from "./usePlatforms";
@@ -24,21 +25,18 @@ const platformMap: Record<string, string> = {
   "Web Browser": "browser",
 };
 
-const useGames = (
-  selectedGenre: Genre | null,
-  selectedPlatform: Platform | null,
-) =>
+const useGames = (gameQuery: GameQuery) =>
   useData<Game>(
     "/games",
     {
       params: {
-        category: selectedGenre ? genreMap[selectedGenre.genre] : undefined,
-        platform: selectedPlatform
-          ? platformMap[selectedPlatform.platform]
+        category: gameQuery.genre ? genreMap[gameQuery.genre.genre] : undefined,
+        platform: gameQuery.platform
+          ? platformMap[gameQuery.platform.platform]
           : undefined,
       },
     },
-    [selectedGenre?.genre, selectedPlatform?.platform],
+    [gameQuery],
   );
 
 export default useGames;
